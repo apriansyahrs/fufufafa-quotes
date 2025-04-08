@@ -1,0 +1,594 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #e63946; /* Red for primary actions */
+    --secondary-color: #b1282b; /* Darker red for hover states */
+    --text-color: #1d3557; /* Dark blue-gray for text */
+    --text-light: #6c757d; /* Gray for secondary text */
+    --background: #f8f9fa; /* Light gray background */
+    --card-bg: #ffffff; /* White for cards */
+    --border-radius: 16px; /* Increased border radius for modern look */
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    --transition: all 0.3s ease;
+
+    /* Golden ratio-based spacing system */
+    --space-xs: 8px;
+    --space-sm: 13px;    /* ~8px × 1.618 */
+    --space-md: 21px;    /* ~13px × 1.618 */
+    --space-lg: 34px;    /* ~21px × 1.618 */
+    --space-xl: 55px;    /* ~34px × 1.618 */
+    --space-xxl: 89px;   /* ~55px × 1.618 */
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--background);
+    color: var(--text-color);
+    line-height: 1.7;
+    padding: var(--space-md);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    width: 90%;
+    max-width: 900px; /* Increased max-width for better reading experience */
+    margin: 0 auto;
+    padding: var(--space-lg);
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: var(--space-lg);
+    color: var(--secondary-color);
+    font-size: 2.4rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+h1:after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: calc(-1 * var(--space-xs));
+    transform: translateX(-50%);
+    width: var(--space-xl);
+    height: 4px;
+    background-color: var(--primary-color);
+    border-radius: 2px;
+}
+
+.quote-container {
+    background-color: var(--card-bg);
+    padding: var(--space-lg);
+    border-radius: var(--border-radius);
+    margin-bottom: var(--space-lg);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: var(--transition);
+    position: relative;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    display: grid;
+    grid-template-rows: auto auto auto;
+    gap: var(--space-md);
+}
+
+.quote-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+.quote-content {
+    font-size: 1.4rem;
+    line-height: 1.8;
+    white-space: pre-line;
+    color: var(--text-color);
+    position: relative;
+    padding-left: var(--space-md);
+    border-left: 4px solid var(--primary-color);
+}
+
+.quote-content::before {
+    content: '"';
+    font-size: 4rem;
+    position: absolute;
+    top: calc(-1 * var(--space-md));
+    left: calc(-1 * var(--space-xs));
+    color: rgba(230, 57, 70, 0.1);
+    font-family: 'Georgia', serif;
+}
+
+.quote-image {
+    text-align: center;
+    overflow: hidden;
+    border-radius: 12px;
+    position: relative;
+    max-height: 500px;
+    background-color: #f5f5f5;
+    margin: var(--space-xs) 0 var(--space-lg); /* Added top and bottom margin for better spacing */
+    padding: var(--space-sm); /* Added padding to prevent image from touching the edges */
+}
+
+.quote-image img {
+    max-width: 100%;
+    max-height: 450px; /* Slightly reduced height for better proportion */
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.5s ease;
+    object-fit: contain;
+    display: block; /* Makes the image behave better in layout */
+    margin: 0 auto; /* Centers the image if it's smaller than the container */
+}
+
+.quote-image img:hover {
+    transform: scale(1.02);
+}
+
+.quote-info {
+    font-size: 0.95rem;
+    color: var(--text-light);
+    margin-top: var(--space-sm);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: var(--space-sm);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    padding-top: var(--space-md);
+}
+
+.quote-info p {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    padding: var(--space-sm) var(--space-md);
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: var(--transition);
+    flex: 1;
+    min-width: 200px;
+    position: relative;
+    /* Add word-break to prevent text overflow */
+    word-break: break-word;
+    /* Ensure enough space for content */
+    min-height: 50px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.quote-info p:hover {
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.quote-info p:first-child::before,
+.quote-info p:last-child::before {
+    font-size: 1.2rem;
+    margin-right: var(--space-xs);
+    flex-shrink: 0;
+}
+
+.quote-info p:first-child::before {
+    content: '📅';
+}
+
+.quote-info p:last-child::before {
+    content: '🔗';
+}
+
+.quote-info p::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background-color: var(--primary-color);
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    opacity: 0.8;
+}
+
+.quote-info span, 
+.quote-info a {
+    font-weight: 500;
+    margin-left: var(--space-xs);
+    color: var(--text-color);
+    /* Prevent text from getting too close to the edge */
+    padding-right: var(--space-xs);
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+    max-width: 100%;
+}
+
+.quote-info a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    padding: 5px var(--space-sm);
+    border-radius: 20px;
+    background-color: rgba(230, 57, 70, 0.08);
+    position: relative;
+    right: -5px;
+}
+
+.quote-info a:hover {
+    color: #fff;
+    background-color: var(--primary-color);
+}
+
+.quote-info a::after {
+    content: '→';
+    margin-left: 5px;
+    font-size: 14px;
+    opacity: 0;
+    transform: translateX(-5px);
+    transition: var(--transition);
+}
+
+.quote-info a:hover::after {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.buttons-container {
+    display: flex;
+    gap: var(--space-sm);
+    margin-top: var(--space-md);
+}
+
+#new-quote-btn {
+    flex: 1;
+    padding: var(--space-sm) var(--space-md);
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 4px 6px rgba(230, 57, 70, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xs);
+}
+
+#new-quote-btn::before {
+    content: '🔄';
+}
+
+#new-quote-btn:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 7px 14px rgba(230, 57, 70, 0.3);
+}
+
+#new-quote-btn:active {
+    transform: translateY(0);
+}
+
+/* Download button styling */
+.download-btn {
+    position: absolute;
+    bottom: var(--space-sm);
+    right: var(--space-sm);
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: var(--space-xs) var(--space-md);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    transition: var(--transition);
+    opacity: 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    z-index: 5;
+}
+
+.download-btn:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.download-btn:active {
+    transform: translateY(0);
+}
+
+.download-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    opacity: 0.7;
+    transform: none;
+    box-shadow: none;
+}
+
+.download-btn svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* Make the download button more visible on hover */
+.quote-image:hover .download-btn {
+    opacity: 1;
+}
+
+/* Styling untuk loading spinner */
+.loading-spinner {
+    display: none;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+    border-radius: var(--border-radius);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid rgba(230, 57, 70, 0.1);
+    border-radius: 50%;
+    border-top: 4px solid var(--primary-color);
+    margin: 0 auto var(--space-sm);
+    animation: spin 0.8s linear infinite;
+}
+
+.loading-spinner p {
+    color: var(--text-color);
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Add the info-label class that was missing in previous updates */
+.info-label {
+    font-weight: 600;
+    color: var(--text-color);
+    margin-left: 0;
+    display: inline-block;
+}
+
+/* Media queries for better responsiveness */
+@media (max-width: 768px) {
+    body {
+        padding: var(--space-sm);
+    }
+    
+    .container {
+        padding: var(--space-md);
+        width: 100%;
+    }
+    
+    h1 {
+        font-size: 2rem;
+        margin-bottom: var(--space-md);
+    }
+    
+    .quote-content {
+        font-size: 1.2rem;
+        padding-left: var(--space-sm);
+    }
+    
+    .quote-container {
+        padding: var(--space-md);
+        gap: var(--space-md);
+    }
+    
+    .quote-content::before {
+        font-size: 3rem;
+    }
+    
+    .quote-image {
+        margin: var(--space-xs) 0 var(--space-md); /* Adjusted margin for medium screens */
+        padding: var(--space-xs); /* Reduced padding on medium screens */
+    }
+    
+    .quote-info {
+        flex-direction: row;
+        gap: var(--space-sm);
+    }
+    
+    .quote-info p {
+        padding: var(--space-xs) var(--space-sm);
+        min-width: 0;
+        flex: 1 0 45%;
+        /* Better flex layout for medium screens */
+        flex-wrap: wrap;
+    }
+    
+    /* Add space between icon and text at smaller screens */
+    .quote-info p:first-child::before,
+    .quote-info p:last-child::before {
+        margin-right: var(--space-xs);
+    }
+    
+    /* Allow text to wrap better on medium screens */
+    .quote-info span, 
+    .quote-info a {
+        flex: 1 0 100%;
+        margin-left: 0;
+        margin-top: 5px;
+        display: inline-block;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: var(--space-xs);
+    }
+    
+    .container {
+        padding: var(--space-md);
+    }
+    
+    h1 {
+        font-size: 1.7rem;
+        margin-bottom: var(--space-md);
+    }
+    
+    h1:after {
+        width: var(--space-xl);
+        height: 3px;
+    }
+    
+    .quote-content {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        padding-left: var(--space-sm);
+        margin-bottom: var(--space-xs); /* Added margin to create more space */
+    }
+    
+    .quote-container {
+        padding: var(--space-md);
+        gap: var(--space-md); /* Increased gap between elements */
+    }
+    
+    .quote-info {
+        flex-direction: column;
+        gap: var(--space-sm);
+        padding-top: var(--space-md);
+    }
+    
+    .quote-info p {
+        width: 100%;
+        padding: var(--space-sm);
+        min-width: 0;
+        /* Change flex layout for mobile */
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-xs);
+    }
+    
+    .quote-info p::after {
+        width: 4px;
+    }
+    
+    /* Better spacing for the label and content on mobile */
+    .quote-info p:first-child::before,
+    .quote-info p:last-child::before {
+        margin-bottom: var(--space-xs);
+        font-size: 1.4rem;
+    }
+    
+    /* Full width for text elements and better alignment */
+    .quote-info span, 
+    .quote-info a {
+        width: 100%;
+        margin-left: 0;
+        margin-top: var(--space-xs);
+        padding: 5px 0;
+        display: block;
+    }
+    
+    /* Adjust link styling for better mobile experience */
+    .quote-info a {
+        padding: var(--space-xs) var(--space-sm);
+        text-align: center;
+        margin-top: var(--space-sm);
+        display: inline-block;
+    }
+
+    .info-label {
+        display: block;
+        width: 100%;
+        margin-bottom: var(--space-xs);
+        color: var(--primary-color);
+        font-size: 1rem;
+    }
+    
+    #quote-date {
+        font-size: 1.1rem;
+        display: block;
+        width: 100%;
+        padding: var(--space-xs) 0;
+    }
+    
+    .quote-info a {
+        margin-top: var(--space-xs);
+        display: inline-block;
+        padding: var(--space-xs) var(--space-sm);
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 375px) {
+    .container {
+        padding: var(--space-sm);
+    }
+    
+    .quote-container {
+        padding: var(--space-sm);
+    }
+    
+    .quote-content {
+        font-size: 1rem;
+        padding-left: var(--space-xs);
+    }
+    
+    .quote-image {
+        margin: var(--space-xs) 0 var(--space-sm);
+        padding: var(--space-xs);
+    }
+    
+    .quote-info p {
+        font-size: 0.9rem;
+        padding: var(--space-sm);
+        margin-bottom: 0; /* Fix inconsistent margin */
+    }
+    
+    /* Further adjustments for very small screens */
+    .quote-info span {
+        font-size: 1rem;
+    }
+    
+    .quote-info a {
+        width: auto;
+        font-size: 0.9rem;
+        padding: var(--space-xs) var(--space-sm);
+    }
+
+    .info-label {
+        font-size: 0.95rem;
+    }
+    
+    #quote-date {
+        font-size: 1rem;
+    }
+}

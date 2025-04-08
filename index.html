@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Kumpulan quote-quote menginspirasi dan berkesan">
+    <meta name="theme-color" content="#e63946">
+    <title>Fufufafa - Memorable Quotes</title>
+    <link rel="icon" href="avatar-fufufafa.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Fufufafa - Memorable Quotes</h1>
+        
+        <div class="quote-container" id="quote-container">
+            <div class="quote-content" id="quote-content"></div>
+            
+            <div class="quote-image">
+                <img id="quote-image" src="" alt="Quote Image">
+                <button id="download-image-btn" class="download-btn" title="Unduh Gambar" disabled>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                        <path d="M8 4a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5A.5.5 0 0 1 8 4z"/>
+                    </svg>
+                    Unduh
+                </button>
+            </div>
+            
+            <div class="quote-info">
+                <p><span class="info-label">Tanggal</span> <span id="quote-date"></span></p>
+                <p><span class="info-label">Sumber</span> <a id="quote-source" href="" target="_blank">Lihat Sumber</a></p>
+            </div>
+            
+            <!-- Loading spinner inside quote container -->
+            <div class="loading-spinner" id="loading-spinner">
+                <div class="spinner"></div>
+                <p>Memuat quote...</p>
+            </div>
+        </div>
+        
+        <div class="buttons-container">
+            <button id="new-quote-btn">Quote Baru</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

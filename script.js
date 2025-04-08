@@ -151,6 +151,39 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
+    // Add this function to safely handle accessing CSS rules
+    function safelyAccessStylesheet() {
+        try {
+            const styleSheets = Array.from(document.styleSheets);
+            for (const sheet of styleSheets) {
+                // Only access same-origin stylesheets
+                if (sheet.href === null || sheet.href.startsWith(window.location.origin)) {
+                    // Try to access rules safely
+                    try {
+                        const rules = sheet.cssRules;
+                        console.log("Successfully accessed CSS rules");
+                        return true;
+                    } catch (e) {
+                        console.warn("Couldn't access cssRules for stylesheet:", sheet.href);
+                    }
+                }
+            }
+            console.warn("Couldn't access any stylesheet rules due to CORS restrictions");
+            return false;
+        } catch (error) {
+            console.error("Error accessing stylesheets:", error);
+            return false;
+        }
+    }
+    
+    // Call this function when the page loads
+    document.addEventListener('DOMContentLoaded', function() {
+        // Check if we can access the stylesheets
+        safelyAccessStylesheet();
+        
+        // ...rest of your initialization code...
+    });
+    
     // Event listener untuk tombol quote baru
     newQuoteBtn.addEventListener('click', () => {
         showLoading();
